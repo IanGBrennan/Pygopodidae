@@ -1,5 +1,5 @@
-library(macroevolution)
-setwd("/Users/ianbrennan/Desktop/Pygopodidae_Diet")
+library(macroevolution) # devtools::install_github("blueraleigh/macroevolution")
+setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Diet")
 
 
 DATAFILE = "Squamata_Diets_Families.csv"
@@ -13,8 +13,10 @@ diet = read.csv(DATAFILE, header=TRUE)
 diet$predator = names_map[match(diet$predator, names_map[,1]), 2]
 
 phy = read.newick(TREEFILE)
+#phy.tre = ape::read.tree(TREEFILE)
 
 common_spp = intersect(tiplabels(phy), unique(diet[,1]))
+#diet_not_tree = setdiff(unique(diet$predator), phy.tre$tip.label)
 
 diet = diet[diet$predator %in% common_spp, ]
 phy = keep.tip(phy, common_spp)

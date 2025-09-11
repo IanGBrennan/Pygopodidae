@@ -1,6 +1,6 @@
 # pygopods are an enigmatic radiation that fills Australia's invertebrate-eating snake problem
 
-setwd("/Users/ianbrennan/Desktop/Pygopodidae_Diet")
+setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Diet")
 
 ################################################################################
 
@@ -16,7 +16,7 @@ NAMEMAP = "dietname-to-treename.csv"
 names_map = read.csv(NAMEMAP, header=TRUE)
 diet = read.csv(DATAFILE, header=TRUE)
 diet.old = read.csv(DATA.OLD, header=T)
-tree = read.tree(TREEFILE)
+tree = ape::read.tree(TREEFILE)
 
 # keep track of the species that we have added to the diet dataset
 new.sp <- setdiff(diet$predator, diet.old$predator)
