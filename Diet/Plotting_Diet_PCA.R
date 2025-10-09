@@ -2,6 +2,8 @@
 
 setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Diet")
 
+# check to make sure Varanus mabitang is included
+
 ################################################################################
 
 ################################################################################
@@ -75,6 +77,8 @@ plot.rotations(diet.pca, plot=T, which.pca="prcomp")
 
 #############################################################
 source("innovate_elaborate.R")
+alldat <- read.csv('alldat.csv')
+tree <- ape::read.tree("best_ultrametric_fulltree_ddBD_revision.tre")
 dpn <- read.csv("diet-proportions-phylo.csv", row.names=1)
 dietProportions <- data.matrix(dpn)
 # dietProportions <- log(sweep(dietProportions[,-31], 1, dietProportions[,31], "/")) # alr
@@ -88,7 +92,7 @@ dietProportionsStan[rownames(dietProportionsStan)%in%snakes,"group"] <- "snake"
 # l.df <- dplyr::filter(dietProportionsStan, group=="lizard")
 # dietProportionsStan <- rbind(s.df, l.df)
 
-dpn.pca = prcomp(dietProportionsStan[,1:31])
+dpn.pca = prcomp(dietProportionsStan[,1:34])
 #plot.rotations(dpn.pca, plot=T, which.pca="prcomp")
 #autoplot(dpn.pca, loadings=T, loadings.label=T)
 dpn.x <- data.frame(dpn.pca$x)
@@ -98,11 +102,6 @@ summary(dpn.pca)
 biplot(dpn.pca)
 
 
-
-
-
-alldat <- read.csv('alldat.csv')
-tree <- ape::read.tree("best_ultrametric_fulltree_ddBD_revision.tre")
 
 snakes <- alldat[which(alldat[, 'Lizard_Snake_Pygopod'] == 1), 'treename']
 snakes <- snakes[snakes %in% tree$tip.label]; snakes <- snakes[1:length(snakes)]
@@ -139,9 +138,60 @@ ggplot(dpn.x) +
   #geom_point(aes(x=-0.81,y=-0.09),fill="pink", shape=21, size=4) +
   theme_classic()
 
+
+library(patchwork)
+
+limbs <- rep('limbed', nrow(dpn.x))
+limbs[rownames(dpn.x) %in% nolimb] <- 'reduced'
+limbs[rownames(dpn.x) %in% snakes] <- 'snake'
+limbs[rownames(dpn.x) %in% pygopod] <- 'pygopod'
+limbs[grep("Pygopus",rownames(dpn.x))] <- 'Pygopus'
+limbs[grep("Aprasia",rownames(dpn.x))] <- 'Aprasia'
+limbs[grep("Delma",rownames(dpn.x))] <- 'Delma'
+limbs[grep("Pletholax",rownames(dpn.x))] <- 'Pletholax'
+limbs[grep("Ophidiocephalus",rownames(dpn.x))] <- 'Ophidiocephalus'
+limbs[grep("Lialis",rownames(dpn.x))] <- 'Lialis'
+limbs[grep("Paradelma",rownames(dpn.x))] <- 'Paradelma'
+
+dpn.x$limbs <- limbs
+
+ggplot() +
+  geom_point(data = transform(dpn.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2)) +
+  geom_point(data = dpn.x, aes(x=PC1, y=PC2, fill=limbs),size=3,shape=21) +
+  facet_wrap(~limbs) + theme_bw() + theme(legend.position = "none")
+
+plot.pygo <- ggplot() +
+  geom_point(data = transform(dpn.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(dpn.x, limbs %in% c("Aprasia","Delma","Paradelma","Pletholax",
+                                                      "Pygopus","Ophidicephalus","Lialis")), aes(x=PC1, y=PC2, fill=limbs),shape=21,size=4) +
+  theme_bw() + theme(legend.position = "none")
+
+plot.snake <- ggplot() +
+  geom_point(data = transform(dpn.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(dpn.x, limbs=="snake"), aes(x=PC1, y=PC2),shape=21,size=3,fill="darkBlue") +
+  theme_bw() + theme(legend.position = "none")
+
+plot.limbs <- ggplot() +
+  geom_point(data = transform(dpn.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(dpn.x, limbs=="limbed"), aes(x=PC1, y=PC2, fill=Family),shape=21,size=3,fill="orange") +
+  theme_bw() + theme(legend.position = "none")
+
+plot.ll <- ggplot() +
+  geom_point(data = transform(dpn.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(dpn.x, limbs=="reduced"), aes(x=PC1, y=PC2, fill=Family),shape=21,size=3,fill="lightBlue") +
+  theme_bw() + theme(legend.position = "none")
+
+# establish a plot layout
+layout <- "
+AAAABB
+AAAACC
+AAAADD
+"
+plot.pygo + plot.limbs + plot.ll + plot.snake + plot_layout(design=layout)
+
 #############################################################
 
-ptCols <- rep('pink', nrow(dpn.pca$x))
+ptCols <- rep('goldenrod1', nrow(dpn.pca$x))
 ptCols[rownames(dpn.pca$x) %in% nolimb] <- 'lightBlue'
 ptCols[rownames(dpn.pca$x) %in% snakes] <- 'coral2'
 ptCols[rownames(dpn.pca$x) %in% pygopod] <- '#61cf61'
@@ -151,8 +201,8 @@ table(ptCols)
 
 library(ggplot2)
 ggplot(dpn.x) +
-  geom_point(aes(x=PC1, y=PC2), fill=dpn.x$colors, shape=21, color="black", size=3) +
-  #geom_point(aes(x=PC1, y=PC3), fill=dpn.x$colors, shape=21, color="black", size=3) +
+  #geom_point(aes(x=PC1, y=PC2), fill=dpn.x$colors, shape=21, color="black", size=3) +
+  geom_point(aes(x=PC3, y=PC4), fill=dpn.x$colors, shape=21, color="black", size=3) +
   #geom_point(aes(x=PC1, y=PC7), fill=dpn.x$colors, shape=21, color="black", size=3) +
   theme_classic()
 
@@ -223,7 +273,7 @@ fd.fam[order(fd.fam$fe,decreasing=T),]
 #############################################################
 
 lizard.dietProportionsStan <- dietProportionsStan[which(rownames(dietProportionsStan) %in% c(lizards,pygopod)),]
-liz.pca = prcomp(lizard.dietProportionsStan)
+liz.pca = prcomp(lizard.dietProportionsStan[,1:34])
 plot.rotations(liz.pca, plot=T, which.pca="prcomp")
 autoplot(liz.pca, loadings=T, loadings.label=T)
 liz.x <- data.frame(liz.pca$x)
@@ -299,6 +349,51 @@ liz.fam[order(liz.fam$pd, decreasing=T),]
 liz.fam[order(liz.fam$fd, decreasing=T),]
 liz.fam[order(liz.fam$fe, decreasing=T),]
 
+
+#############################################################
+
+limbs <- rep('limbed', nrow(liz.x))
+limbs[rownames(liz.x) %in% nolimb] <- 'reduced'
+limbs[rownames(liz.x) %in% pygopod] <- 'pygopod'
+liz.x$limbs <- limbs
+
+ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2)) +
+  geom_point(data = liz.x, aes(x=PC1, y=PC2, color=limbs),size=3) +
+  facet_wrap(~limbs) + theme_bw() + theme(legend.position = "none")
+
+plot.pygo <- ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(liz.x, limbs=="pygopod"), aes(x=PC1, y=PC2, fill=limbs),shape=21,size=4) +
+  theme_bw() + theme(legend.position = "none")
+
+plot.snake <- ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(liz.x, limbs=="snake"), aes(x=PC1, y=PC2, fill=limbs),shape=21,size=3) +
+  theme_bw() + theme(legend.position = "none")
+
+plot.limbs <- ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(liz.x, limbs=="limbed"), aes(x=PC1, y=PC2, fill=limbs),shape=21,size=3) +
+  theme_bw() + theme(legend.position = "none")
+
+plot.ll <- ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = dplyr::filter(liz.x, limbs=="reduced"), aes(x=PC1, y=PC2, fill=limbs),shape=21,size=3) +
+  theme_bw() + theme(legend.position = "none")
+
+# establish a plot layout
+layout <- "
+AAAABB
+AAAACC
+AAAADD
+"
+plot.pygo + plot.limbs + plot.ll + plot.snake + plot_layout(design=layout)
+
+ggplot() +
+  geom_point(data = transform(liz.x, limbs = NULL), color = "grey85", aes(x=PC1, y=PC2),size=2) +
+  geom_point(data = liz.x, aes(x=PC1, y=PC2, fill=limbs),shape=21,size=3) +
+  facet_wrap(~limbs) + theme_bw() + theme(legend.position = "none")
 
 #############################################################
 
