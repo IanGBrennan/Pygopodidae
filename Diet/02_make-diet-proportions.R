@@ -1,6 +1,6 @@
 library(macroevolution)
 
-setwd("/Users/ianbrennan/Desktop/Pygopodidae_Diet")
+setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Diet")
 
 X = vector("list", 4)
 w = numeric(4)
@@ -22,14 +22,14 @@ for (i in 1:4)
 
     post.states = mcmc$stateid[start:end,]
 
-    X[[i]] = matrix(0, Ntip(mcmc$phy), 31, 
+    X[[i]] = matrix(0, Ntip(mcmc$phy), 32, # was 31; corrected for number of diet categories
         dimnames=list(tiplabels(mcmc$phy), names(mcmc$dirichlet.prior)))
 
     invisible(apply(post.states, 1, function(p) {
         up = unique(p)
         op = order(up)
         p = setNames(match(p, up[op]), names(p))
-        x = t(sapply(lapply(split(D, p), matrix, ncol=31), colSums))+1
+        x = t(sapply(lapply(split(D, p), matrix, ncol=32), colSums))+1 # was 31; corrected for number of diet categories
         x = sweep(x, 1, rowSums(x), "/")
         X[[i]] <<- X[[i]] + x[p,] / n
     }))
@@ -37,7 +37,7 @@ for (i in 1:4)
 
 w = exp(w - max(w)) / sum(exp(w - max(w)))
 
-Y = matrix(0, Ntip(mcmc$phy), 31, 
+Y = matrix(0, Ntip(mcmc$phy), 32, # was 31; corrected for number of diet categories
         dimnames=list(tiplabels(mcmc$phy), names(mcmc$dirichlet.prior)))
 
 for (i in 1:4)
