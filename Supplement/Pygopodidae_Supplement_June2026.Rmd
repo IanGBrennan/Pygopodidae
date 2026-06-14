@@ -1,0 +1,152 @@
+---
+title: |  
+  |
+  |  Supplemental Information to:
+  |
+  |  Pygopods are an exceptional
+  |  radiation of snake-like geckos 
+  |
+author: |
+  | Ian G. Brennan $^{1,2,}$^[Corresponding author: ian.brennan@qm.qld.gov.au] , J. Scott Keogh$^2$, Damien Esquerré $^3$
+  |
+  |
+  | $^1$Natural History, Queensland Museum, QLD, Australia
+  | $^2$Division of Ecology & Evolution, Research School of Biology, 
+  | Australian National University, ACT, Australia
+  | $^3$Environmental Futures Research Centre, School of Science,
+  | University of Wollongong, NSW, Australia
+  |
+output:
+  bookdown::pdf_document2:
+      toc: true
+      toc_depth: 3
+      number_sections: false
+      keep_tex: no
+  #    pandoc_args: ["--lua-filter", "figure_caption_patch.lua"]
+  #pdf_document: #default
+  #    toc: false
+  #    number_sections: false
+  #word_document:
+  #    reference_docx: /Users/ianbrennan/My Drive/R.Analyses/rMarkdown_CSLs/Word_Style_Reference_1.docx
+fontsize: 12pt
+linkcolor: orange 
+geometry: margin = 1in
+indent: true
+#csl: /Users/ianbrennan/My Drive/R.Analyses/rMarkdown_CSLs/current-biology.csl
+#bibliography: /Users/ianbrennan/Documents/GitHub/Tiliquini/Manuscript/Tiliquini_References.bib
+linestretch: 1 # use to adjust line spacing
+header-includes: 
+- \usepackage{float}
+- \usepackage[left]{lineno}
+- \usepackage{graphicx,kantlipsum,setspace}
+- \usepackage{caption}
+- \captionsetup[figure]{font={stretch=1}}
+- \captionsetup[table]{font={stretch=1}}
+#- \linenumbers
+#- \modulolinenumbers[5]
+- \pagenumbering{gobble}
+- \pagenumbering{arabic}
+- \newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}} # renames the supplemental figures as S...
+- \usepackage{lscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \captionsetup[figure]{labelfont={bf},name={Figure},labelsep=period}
+---
+
+```{r echo=FALSE,warning=FALSE}
+# this is so that figures are displayed in their proper place in the text, and not all at the end. 
+library(knitr)
+  opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center',
+                 external=TRUE, echo=TRUE, warning=FALSE, fig.pos='H')
+```
+
+```{r setup, include=FALSE, eval=F}
+knitr::opts_knit$set(root.dir = "/Users/ianbrennan/Documents/GitHub/Pygopodidae")
+```
+
+
+\newpage
+
+\beginsupplement
+
+<!-- SUPPLEMENTARY FIGURES -->
+
+# Supplementary Information
+
+All data, scripts, figures, and files necessary to replicate this work are available on the project GitHub page [IanGBrennan/Pygopodidae](https://github.com/iangbrennan/pygopodidae)
+
+## Molecular Sampling and Analysis
+
+### Taxon Sampling
+We assembled a sequence-capture dataset from 171 pygopods representing all 49 (~50 with new tinctas) recognized species (Table S1). We included outgroup representatives from diplodactylid (*Oedura luritja*) and carphodactylid (*Saltuarius cornutus*) geckos and used tuatara (*Sphenodon punctatus*) to root the tree. 
+
+### Molecular Data Collection and Processing
+Molecular sampling implemented the Squamate Conserved Loci (SqCL) kit (Singhal et al. 2017), which comprises ~5,000 ultra-conserved elements (UCEs), ~400 anchored hybrid enrichment loci (AHEs), and ~40 legacy genes commonly used in squamate molecular phylogenetics. Sample collection and laboratory preparation, including extraction, shearing, size selection, library generation, and hybridization capture were completed as part of the Australian Amphibian and Reptile Genomics initiative (AusARG) under the Phylogenomics Working Group following the protocol outlined in Tiatragul et al. (2023). 
+
+Raw sequence reads are available from the [Bioplatforms Australia Data Portal](https://data.bioplatforms.com/organization/ausarg). We processed raw sequence data using the [*pipesnake*](https://iangbrennan.github.io/pipesnake2/) workflow (Brennan et al. 2024). A list of all software and versions used is included in [Supplement/software_versions.yml](github.com/iangbrennan/pygopodidae/Supplement/software_versions.yml). In brief, the pipeline concatenates individual read files, then removes duplicate reads via BBMAP (Bushnell 2014), trims adapters and barcodes with TRIMMOMATIC (Bolger et al. 2014), identifies read pairs with PEAR (Zhang et al. 2014), removes off-target reads with BBMAP, assembles reads to contigs with SPAdes (Prjibelski et al. 2020), maps contigs to targets with BLAT (Kent 2002) and extracts the best hit for each target, carries out preliminary alignments with MAFFT (Katoh & Standley 2013), before refining the alignments with ClipKit (Steenwyk et al.), estimates locus trees with IQ-TREE2 (Minh et al. 2020), and a species tree with weighted ASTRAL hybrid (Zhang & Mirarab 2022). Alignments were further manipulated using SEGUL (Handika & Esselstyn 2024). *pipesnake* is a highly reproducible workflow that provides consistent results with little user input. 
+
+\pagebreak 
+
+```{r, echo=F}
+library(magrittr); library(kableExtra)
+sampling <- read.csv("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Sampling/Pygopodidae_SampleInfo.csv", header=T)
+sampling <- dplyr::select(sampling, lineage, AHE, gene, uce, total_loci, Targets, Source)
+sampling <- dplyr::arrange(sampling, lineage)
+kable(sampling, caption = "Table of molecular samples. This data is available as a CSV file in Sampling/Pygopodidae SampleInfo.csv", format="latex", longtable=T) %>%
+  kable_styling(font_size = 6, latex_options = c("HOLD_position","repeat_header","striped"))
+```
+
+### Phylogenetic Analyses
+We estimated individual genealogies for our sequence-capture data (n=5441) under maximum-likelihood in IQ-TREE2 (Minh et al. 2020) allowing the program to assign the best fitting substitution model using ModelFinder (Kalyaanamoorthy et al. 2017), then perform 1,000 ultrafast bootstraps (Minh et al. 2013). We then estimated the species tree using the coalescent-consistent methods wASTRAL-hybrid and ASTRAL-IV (Zhang & Mirarab 2022), using IQ-TREE2 gene trees as input. We used two ASTRAL methods to take advantage of the way wASTRAL-hybrid weights branch lengths and support values in estimating the species tree, and how ASTRAL-IV allows multiple individuals per species and estimates both internal and terminal branch lengths in substitutions-per-site (as opposed to coalescent units for internal branch lengths and static terminal branch lengths in wASTRAL). To quantify topological signal from individual gene trees we calculated gene concordance factors using IQ-TREE2 and focused on intergeneric relationships using a single representative for each genus. 
+
+```{r ASTRAL4, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF1)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_AllLoci_Clean_ASTRAL4.pdf")
+```
+(ref:SF1) \small Fully sampled sequence capture tree, estimated by ASTRAL4 using IQTREE-2 genetree inputs. Branch support values are indicated at nodes.
+
+```{r wASTRAL, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF2)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_AllLoci_Clean_wASTRAL.pdf")
+```
+(ref:SF2) \small Fully sampled sequence capture tree, estimated by weighted ASTRAL hybrid using IQTREE-2 genetree inputs. Branch support values are indicated at nodes. 
+
+
+### Divergence Dating
+
+To estimate divergence times among taxa we applied a series of fossil and secondary calibrations in MCMCTree (Rannala & Yang 2007) as outlined in the Supplement and Table S2. We started by trimming our ASTRAL tree down to a single representative for each ingroup species or subspecies for input. We reduced our molecular data to exonic markers in the AHE loci, then estimated raw genetic distances from alignments to use as a proxy for evolutionary rate. We removed the fastest 5% and slowest 5% of loci to avoid issues with extreme rate heterogeneity, divided the remaining loci into four rate partitions, and then removed third codon positions from all loci using AMAS (Borowiec 2016). 
+
+For each partition we ran MCMCTree with usedata = 3 to get the approximate likelihoods and branch lengths using baseml (dos Reis & Yang 2011), then concatenated the out.BV files together. We then ran four replicate MCMCTree analyses on the gradient and Hessian (in.BV file; usedata = 2), each for 20k burnin generations before collecting 20k samples at a sampling frequency of 100 generations (2,020,000 total generations). We compared mcmc files for stationarity and convergence (ESS of all parameters > 200), combined them using logCombiner, and used this combined mcmc file to summarize divergence times on our tree (print = -1 in .ctl file). To validate our priors we ran an additional analysis (usedata = 0) to run explicitly from the prior calibrations and determine our effective priors for comparison against our posterior age estimates. We then plotted the applied priors against effective priors (priors as a result of multiple interacting priors from usedata = 0) and posterior estimates to ensure  appropriate behavior of the MCMCTree analyses (Fig.SX). 
+
+#### Table S2. Fossil Calibrations
+
+| Fossil Information	|   Calibration	|   Split/Position	|   Source |
+|---------------------|---------------|-------------------|----------|
+| Uniform—Sophineta	|   'B(2.38,2.55)'	|   Lepidosauria (Sphenodon + Squamata)	|   see below |
+| Uniform—Secondary	|   'B(0.50,0.80)'	|   Diplodactylidae + (Carphodactylidae + Pygopodidae)	|   Burbrink et al. 2020; Title et al. 2024 |
+
+
+*Note*. The root divergence between lepidosaurs (*Sphenodon* + squamates) is based on the fossil taxa *Sophineta cracoviensis* (Evans & Bialynicka, 2009), *Megachirella wachtleri* (Renesto & Posenato, 2003), and the Vellberg Jaw (Jones et al., 2013). These taxa represent stem squamates and rhynchocephalians, and so provide a soft lower bound on the crown divergence of Lepidosauria, with a soft upper bound provided by *Protosaurus speneri* (von Meyer, 1832).
+
+```{r MCMCTREE, echo=FALSE, eval=T, out.height='80%', fig.align="center", fig.cap="(ref:SF4)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_MCMCTree_ALL.pdf")
+```
+(ref:SF4) \small Fully sampled timetree estimated using MCMCTree. 
+
+\newpage
+
+## Morphological Sampling
+
+Below, we provide information about the collection of morphological traits from the literature, as well as summary statistics about the sampling.
+
+```{r TLSVL, echo=FALSE, eval=T, out.width='90%', fig.align="center", fig.cap="(ref:SF3)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Squamata_TLSVL_Total2.png")
+```
+(ref:SF3) \small Trends in tail length to snout-vent length as a function of total length across squamate families. Where sample sizes permit, we fit linear models to family trends. 
+
+
+```{r, echo=F, eval=F}
+library(magrittr); library(kableExtra)
+mtraits <- read.csv("../Data/Morphology_Definitions.csv")
+kable(mtraits, caption = "Morphological measurements of Asterophryinae frogs, following Zweifel (1972; 2000).") %>%
+  kable_styling(font_size = 9, latex_options = "HOLD_position")
+```
+

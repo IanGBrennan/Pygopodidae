@@ -84,6 +84,12 @@ ggplot() +
   geom_point(data = zdata, aes(x=log(Total), y=TL/SVL, color=group)) +
   facet_wrap(~group) + theme_bw() + theme(legend.position = "none")
 
+# plot the tail/body ratio as a linear function sorted by family/group
+ggplot() +
+  geom_point( data=zdata, aes(x=log(Total), y=TL/SVL, color=family), alpha=0.5, size=0.5) +
+  geom_smooth(data=zdata, aes(x=log(Total), y=TL/SVL, color=family), method=lm, se=F, lineend="round") +
+  facet_wrap(~group) + theme_bw() + theme(legend.position="none")
+
 
 # plot the tail/body ratio as a function of total length
 ggplot() +
@@ -144,6 +150,13 @@ ggplot() +
   geom_point(data = transform(ydata, group = NULL), color = "grey85", aes(x=log(Total), y=TL/SVL)) +
   geom_point(data = ydata, aes(x=log(Total), y=TL/SVL, color=group)) +
   facet_wrap(~group) + theme_bw() + theme(legend.position = "none")
+
+# plot the tail/body ratio as a linear function sorted by family/group
+ggplot() +
+#  geom_point(data = transform(ydata, group = NULL), color = "grey85", aes(x=log(Total), y=TL/SVL), size=0.5) +
+  geom_point( data=ydata, aes(x=log(Total), y=TL/SVL, color=family), alpha=0.5, size=0.5) +
+  geom_smooth(data=ydata, aes(x=log(Total), y=TL/SVL, color=family), method=lm, se=F, lineend="round") +
+  facet_wrap(~group) + theme_bw() + theme(legend.position="none")
 
 plot.pygo <- ggplot() +
   geom_point(data = transform(ydata, group = NULL), color = "grey85", aes(x=log(Total), y=TL/SVL), size=2) +
