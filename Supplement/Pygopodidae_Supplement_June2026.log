@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.12)  15 JUN 2026 09:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.12)  22 JUN 2026 20:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -636,39 +636,76 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 {/Users/ianbrennan/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [2]
 ignored error: Infinite glue shrinkage found in box being split [3]
 ignored error: Infinite glue shrinkage found in box being split [4]
-Underfull \hbox (badness 1320) in paragraph at lines 487--488
+<Pygopodidae_LocusSampling.pdf, id=65, 597.23125pt x 844.15375pt>
+File: Pygopodidae_LocusSampling.pdf Graphic file (type pdf)
+<use Pygopodidae_LocusSampling.pdf>
+Package pdftex.def Info: Pygopodidae_LocusSampling.pdf  used on input line 491.
+(pdftex.def)             Requested size: 414.15865pt x 585.38303pt.
+[5]
+Underfull \hbox (badness 1320) in paragraph at lines 502--503
 \T1/lmr/m/n/12 We es-ti-mated in-di-vid-ual ge-nealo-gies for our sequence-capture data (n=5441) un-der
  []
 
-<Pygopodidae_AllLoci_Clean_ASTRAL4.pdf, id=52, 938.50626pt x 2232.34pt>
-File: Pygopodidae_AllLoci_Clean_ASTRAL4.pdf Graphic file (type pdf)
-<use Pygopodidae_AllLoci_Clean_ASTRAL4.pdf>
-Package pdftex.def Info: Pygopodidae_AllLoci_Clean_ASTRAL4.pdf  used on input line 491.
-(pdftex.def)             Requested size: 246.09665pt x 585.38303pt.
-[5]
-<Pygopodidae_AllLoci_Clean_wASTRAL.pdf, id=57, 785.93625pt x 1992.44376pt>
-File: Pygopodidae_AllLoci_Clean_wASTRAL.pdf Graphic file (type pdf)
-<use Pygopodidae_AllLoci_Clean_wASTRAL.pdf>
-Package pdftex.def Info: Pygopodidae_AllLoci_Clean_wASTRAL.pdf  used on input line 502.
-(pdftex.def)             Requested size: 230.90178pt x 585.38303pt.
-[6 <./Pygopodidae_AllLoci_Clean_ASTRAL4.pdf>] [7 <./Pygopodidae_AllLoci_Clean_wASTRAL.pdf>]
-<Pygopodidae_MCMCTree_ALL.pdf, id=79, 785.93625pt x 826.08624pt>
-File: Pygopodidae_MCMCTree_ALL.pdf Graphic file (type pdf)
-<use Pygopodidae_MCMCTree_ALL.pdf>
-Package pdftex.def Info: Pygopodidae_MCMCTree_ALL.pdf  used on input line 546.
-(pdftex.def)             Requested size: 495.0585pt x 520.34598pt.
-
-Overfull \hbox (25.30348pt too wide) in paragraph at lines 546--547
- [][] 
+[6 <./Pygopodidae_LocusSampling.pdf>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 504.
+(/Users/ianbrennan/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (153.49055pt too wide) in paragraph at lines 504--505
+\T1/lmr/m/n/12 al. (2024) we started by se-lect-ing their best cho-sen fully sam-pled tree ([][]\T1/lmtt/m/n/12 best_ultrametric_fulltree_ddBD_revision.tre[][]\T1/lmr/m/n/12 ).
  []
 
-[8] [9 <./Pygopodidae_MCMCTree_ALL.pdf>]
-<Squamata_TLSVL_Total2.pdf, id=97, 597.23125pt x 844.15375pt>
+<Pygopodidae_AllLoci_Clean_ASTRAL4.pdf, id=82, 938.50626pt x 2232.34pt>
+File: Pygopodidae_AllLoci_Clean_ASTRAL4.pdf Graphic file (type pdf)
+<use Pygopodidae_AllLoci_Clean_ASTRAL4.pdf>
+Package pdftex.def Info: Pygopodidae_AllLoci_Clean_ASTRAL4.pdf  used on input line 508.
+(pdftex.def)             Requested size: 246.09665pt x 585.38303pt.
+[7]
+<Pygopodidae_AllLoci_Clean_wASTRAL.pdf, id=90, 785.93625pt x 1992.44376pt>
+File: Pygopodidae_AllLoci_Clean_wASTRAL.pdf Graphic file (type pdf)
+<use Pygopodidae_AllLoci_Clean_wASTRAL.pdf>
+Package pdftex.def Info: Pygopodidae_AllLoci_Clean_wASTRAL.pdf  used on input line 519.
+(pdftex.def)             Requested size: 230.90178pt x 585.38303pt.
+[8 <./Pygopodidae_AllLoci_Clean_ASTRAL4.pdf>]
+<gCFs.pdf, id=101, 520.47647pt x 326.78085pt>
+File: gCFs.pdf Graphic file (type pdf)
+<use gCFs.pdf>
+Package pdftex.def Info: gCFs.pdf  used on input line 530.
+(pdftex.def)             Requested size: 422.77664pt x 265.43896pt.
+[9 <./Pygopodidae_AllLoci_Clean_wASTRAL.pdf>] [10 <./gCFs.pdf>]
+<Pygopodidae_MCMCTree_ALL.pdf, id=139, 618.48264pt x 845.0471pt>
+File: Pygopodidae_MCMCTree_ALL.pdf Graphic file (type pdf)
+<use Pygopodidae_MCMCTree_ALL.pdf>
+Package pdftex.def Info: Pygopodidae_MCMCTree_ALL.pdf  used on input line 581.
+(pdftex.def)             Requested size: 428.4522pt x 585.38303pt.
+[11] [12 <./Pygopodidae_MCMCTree_ALL.pdf>]
+Underfull \hbox (badness 1253) in paragraph at lines 594--595
+\T1/lmr/m/n/12 We col-lected two mor-pho-log-i-cal traits tra-di-tion-ally mea-sured in squa-mate re-search,
+ []
+
+<Squamata_TLSVL_Total2.pdf, id=328, 597.23125pt x 844.15375pt>
 File: Squamata_TLSVL_Total2.pdf Graphic file (type pdf)
 <use Squamata_TLSVL_Total2.pdf>
-Package pdftex.def Info: Squamata_TLSVL_Total2.pdf  used on input line 563.
+Package pdftex.def Info: Squamata_TLSVL_Total2.pdf  used on input line 633.
 (pdftex.def)             Requested size: 422.77664pt x 597.57582pt.
-[10] [11 <./Squamata_TLSVL_Total2.pdf, page is rotated 90 degrees>] (./Pygopodidae_Supplement_June2026.aux)
+[13] [14 <./Squamata_TLSVL_Total2.pdf, page is rotated 90 degrees>]
+<../Figures/BayesTraits/fabric_b_v_upright.pdf, id=354, 1156.32pt x 1589.94pt>
+File: ../Figures/BayesTraits/fabric_b_v_upright.pdf Graphic file (type pdf)
+<use ../Figures/BayesTraits/fabric_b_v_upright.pdf>
+Package pdftex.def Info: ../Figures/BayesTraits/fabric_b_v_upright.pdf  used on input line 680.
+(pdftex.def)             Requested size: 422.77664pt x 581.30583pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 684.
+[15]
+Overfull \vbox (36.70584pt too high) has occurred while \output is active []
+
+[16 <../Figures/BayesTraits/fabric_b_v_upright.pdf>]
+<../Figures/Diet/PairwiseDistance.pdf, id=425, 289.08pt x 433.62pt>
+File: ../Figures/Diet/PairwiseDistance.pdf Graphic file (type pdf)
+<use ../Figures/Diet/PairwiseDistance.pdf>
+Package pdftex.def Info: ../Figures/Diet/PairwiseDistance.pdf  used on input line 697.
+(pdftex.def)             Requested size: 346.93835pt x 520.34598pt.
+[17] [18 <../Figures/Diet/PairwiseDistance.pdf>] [19] (./Pygopodidae_Supplement_June2026.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-29>
@@ -678,18 +715,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15202 strings out of 469519
- 244041 string characters out of 5468711
- 1103590 words of memory out of 5000000
- 43553 multiletter control sequences out of 15000+600000
- 695176 words of font info for 93 fonts, out of 8000000 for 9000
+ 15336 strings out of 469519
+ 246975 string characters out of 5468711
+ 1102590 words of memory out of 5000000
+ 43661 multiletter control sequences out of 15000+600000
+ 702874 words of font info for 101 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 83i,12n,93p,1373b,647s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Pygopodidae_Supplement_June2026.pdf (11 pages, 13813309 bytes).
+ 83i,12n,93p,1961b,647s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/ianbrennan/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Pygopodidae_Supplement_June2026.pdf (19 pages, 16504584 bytes).
 PDF statistics:
- 188 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 793 PDF objects out of 1000 (max. 8388607)
+ 491 compressed objects within 5 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

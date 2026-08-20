@@ -1,0 +1,15 @@
+2026-06-22 15:13:08 +10:00 - INFO - [33m=========================================================[0m
+2026-06-22 15:13:08 +10:00 - INFO - [33mSEGUL v0.22.1[0m
+2026-06-22 15:13:08 +10:00 - INFO - [33mAn ultrafast and memory-efficient tool for phylogenomics[0m
+2026-06-22 15:13:08 +10:00 - INFO - [33m---------------------------------------------------------[0m
+2026-06-22 15:13:08 +10:00 - INFO - Input path        : STDIN
+2026-06-22 15:13:08 +10:00 - INFO - File counts       : 5,406
+2026-06-22 15:13:08 +10:00 - INFO - Input format      : Auto
+2026-06-22 15:13:08 +10:00 - INFO - Data type         : DNA
+2026-06-22 15:13:08 +10:00 - INFO - Task              : Sequence summary statistics
+
+2026-06-22 15:13:14 +10:00 - INFO - 
+2026-06-22 15:13:14 +10:00 - INFO - [33mOutput[0m
+2026-06-22 15:13:14 +10:00 - INFO - Output dir        : Align-Summary
+2026-06-22 15:13:14 +10:00 - INFO - Log file          : segul.log
+2026-06-22 15:13:14 +10:00 - INFO - Execution time    : 6.030978792s

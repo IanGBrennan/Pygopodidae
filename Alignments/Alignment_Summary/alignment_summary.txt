@@ -1,0 +1,87 @@
+General Summary
+Total taxa        : 166
+Total loci        : 5,406
+Total sites       : 7,070,483
+Total characters  : 926,747,262
+Missing data      : 203,143,231
+%Missing data     : 21.92%
+GC content        : 0.31
+AT content        : 0.47
+Characters        : 926,747,262
+Nucleotides       : 723,593,094
+
+Alignment Summary
+Min length        : 437 bp
+Max length        : 3,514 bp
+Mean length       : 1307.90 bp
+
+Taxon Summary
+Min taxa          : 4
+Max taxa          : 159
+Mean taxa         : 130.64
+
+Character Count
+-                 : 203,143,231
+A                 : 219,071,640
+C                 : 143,994,839
+G                 : 143,473,918
+T                 : 217,052,697
+R                 : 3,473
+Y                 : 3,650
+S                 : 691
+W                 : 1,034
+K                 : 1,015
+M                 : 997
+B                 : 17
+D                 : 10
+H                 : 27
+V                 : 23
+
+Matrix Completeness
+100% taxa         : 0
+95% taxa          : 8
+90% taxa          : 337
+85% taxa          : 2,293
+80% taxa          : 3,838
+75% taxa          : 4,348
+70% taxa          : 4,708
+65% taxa          : 4,956
+60% taxa          : 5,018
+55% taxa          : 5,066
+50% taxa          : 5,103
+45% taxa          : 5,134
+40% taxa          : 5,154
+35% taxa          : 5,169
+30% taxa          : 5,202
+25% taxa          : 5,241
+20% taxa          : 5,270
+15% taxa          : 5,328
+10% taxa          : 5,362
+5% taxa           : 5,386
+
+Conserved Sequences
+Conserved loci    : 0
+%Con. loci        : 0.00%
+Conserved sites   : 3,828,057
+%Con. sites       : 54.14%
+Min con. sites    : 111
+Max con. sites    : 2,615
+Mean con. sites   : 0.54
+
+Variable Sequences
+Var. loci         : 5,406
+%Var. loci        : 100.00%
+Var. sites        : 3,242,426
+%Var. sites       : 45.86%
+Min var. sites    : 21
+Max var. sites    : 1,613
+Mean var. sites   : 0.46
+
+Parsimony Informative
+Inf. loci         : 5,403
+%Inf. loci        : 99.94%
+Inf. sites        : 1,868,269
+%Inf. sites       : 26.42%
+Min inf. sites    : 0
+Max inf. sites    : 1,110
+Mean inf. sites   : 0.26
