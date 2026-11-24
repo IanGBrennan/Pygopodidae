@@ -1,0 +1,326 @@
+---
+title: |  
+  |
+  |  Supplemental Information to:
+  |
+  |  Pygopods are an exceptional
+  |  radiation of snake-like geckos 
+  |
+author: |
+  | Ian G. Brennan $^{1,2,}$^[Corresponding author: ian.brennan@qm.qld.gov.au] , David G. Chapple$^3$, J. Scott Keogh$^2$, Damien Esquerré $^4$
+  |
+  | $^1$Natural Sciences, Queensland Museum, QLD, Australia
+  | $^2$Division of Ecology & Evolution, Research School of Biology, 
+  | Australian National University, ACT, Australia
+  | $^3$School of Biological Sciences, Monash University, Australia
+  | $^4$Environmental Futures Research Centre, School of Science,
+  | University of Wollongong, NSW, Australia
+output:
+  bookdown::pdf_document2:
+      toc: true
+      toc_depth: 3
+      number_sections: false
+      keep_tex: no
+  #    pandoc_args: ["--lua-filter", "figure_caption_patch.lua"]
+  #pdf_document: #default
+  #    toc: false
+  #    number_sections: false
+  #word_document:
+  #    reference_docx: /Users/ianbrennan/My Drive/R.Analyses/rMarkdown_CSLs/Word_Style_Reference_1.docx
+fontsize: 12pt
+linkcolor: orange 
+geometry: margin = 1in
+indent: true
+#csl: /Users/ianbrennan/My Drive/R.Analyses/rMarkdown_CSLs/current-biology.csl
+#bibliography: /Users/ianbrennan/Documents/GitHub/Tiliquini/Manuscript/Tiliquini_References.bib
+linestretch: 1 # use to adjust line spacing
+header-includes: 
+- \usepackage{float}
+- \usepackage[left]{lineno}
+- \usepackage{graphicx,kantlipsum,setspace}
+- \usepackage{caption}
+- \captionsetup[figure]{font={stretch=1}}
+- \captionsetup[table]{font={stretch=1}}
+#- \linenumbers
+#- \modulolinenumbers[5]
+- \pagenumbering{gobble}
+- \pagenumbering{arabic}
+- \newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}} # renames the supplemental figures as S...
+- \usepackage{lscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \captionsetup[figure]{labelfont={bf},name={Figure},labelsep=period}
+---
+
+```{r echo=FALSE,warning=FALSE}
+# this is so that figures are displayed in their proper place in the text, and not all at the end. 
+library(knitr)
+  opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center',
+                 external=TRUE, echo=TRUE, warning=FALSE, fig.pos='H')
+```
+
+```{r setup, include=FALSE, eval=F}
+knitr::opts_knit$set(root.dir = "/Users/ianbrennan/Documents/GitHub/Pygopodidae")
+```
+
+\newpage
+
+\beginsupplement
+
+<!-- SUPPLEMENTARY FIGURES -->
+
+# Supplementary Information
+
+All data, scripts, figures, and files necessary to replicate this work are available on the project GitHub page [IanGBrennan/Pygopodidae](https://github.com/iangbrennan/pygopodidae)
+
+## Molecular Sampling and Analysis
+
+### Taxon Sampling
+
+We assembled a sequence-capture dataset from 171 pygopods representing all 50 recognized species (Table S1). We included outgroup representatives from diplodactylid (*Oedura luritja*) and carphodactylid (*Saltuarius cornutus*) geckos and used tuatara (*Sphenodon punctatus*) to root the tree. Specimen BPBM 35951 sequenced by Burbrink et al. 2020 was previously listed as *Lialis burtonis*, but after careful examination of photos of the individual provided by Allen Allison, Molly Hagemann, and Crysal Prussick of the Bernice P. Bishop museum, we have determined it is actually *Lialis jicari*. Specimen CCM 3213 sequenced by Skipwith et al. (2019) as *Delma tincta* has been updated to *Delma borea*. Specimen UMMZ 24260 sequenced by Title & Singhal et al. 2024 as *Delma tincta* has been updated to *Delma butleri*. Additional corrections to species identifications of samples sequenced as part of this project are included in the document `Sampling/Pygopodidae_SampleInfo.csv` under column `IDNote`. 
+
+### Molecular Data Collection and Processing
+
+Molecular sampling implemented the Squamate Conserved Loci (SqCL) kit (Singhal et al. 2017), which comprises \~5,000 ultra-conserved elements (UCEs), \~400 anchored hybrid enrichment loci (AHEs), and \~40 legacy genes commonly used in squamate molecular phylogenetics. Sample collection and laboratory preparation, including extraction, shearing, size selection, library generation, and hybridization capture were completed as part of the Australian Amphibian and Reptile Genomics initiative (AusARG) under the Phylogenomics Working Group following the protocol outlined in Tiatragul et al. (2023).
+
+Raw sequence reads are available from the [Bioplatforms Australia Data Portal](https://data.bioplatforms.com/organization/ausarg). We processed raw sequence data using the [*pipesnake*](https://iangbrennan.github.io/pipesnake2/) workflow (Brennan et al. 2024). A list of all software and versions used is included in [Supplement/software_versions.yml](https://github.com/IanGBrennan/Pygopodidae/blob/main/Supplement/software_versions.yml). In brief, the pipeline concatenates individual read files, then removes duplicate reads via BBMAP (Bushnell 2014), trims adapters and barcodes with TRIMMOMATIC (Bolger et al. 2014), identifies read pairs with PEAR (Zhang et al. 2014), removes off-target reads with BBMAP, assembles reads to contigs with SPAdes (Prjibelski et al. 2020), maps contigs to targets with BLAT (Kent 2002) and extracts the best hit for each target, carries out preliminary alignments with MAFFT (Katoh & Standley 2013), before refining the alignments with ClipKit (Steenwyk et al.), estimates locus trees with IQ-TREE2 (Minh et al. 2020), and a species tree with weighted ASTRAL hybrid (Zhang & Mirarab 2022). Alignments were further manipulated using SEGUL (Handika & Esselstyn 2024). *pipesnake* is a highly reproducible workflow that provides consistent results with little user input.
+
+#### Molecular Summary Statistics
+Summaries of molecular sampling are available in [Alignments/Alignment_Summary/](https://github.com/IanGBrennan/Pygopodidae/tree/main/Alignments) on a per-locus and per-taxon basis. Briefly, there are **5,406** loci covering **7,070,483** aligned sites across **926** million characters. Average locus length is **1,307** bp (min. = 437, max. = 3,514) with an average sample occupancy of **130** individuals per alignment. 
+
+\pagebreak
+
+A CSV file of this project's molecular sampling information is available at [Sampling/Pygopodidae_SampleInfo.csv](https://github.com/IanGBrennan/Pygopodidae/blob/main/Sampling/Pygopodidae_SampleInfo.csv)
+
+```{r, echo=F}
+library(magrittr); library(kableExtra)
+sampling <- read.csv("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Sampling/Pygopodidae_SampleInfo.csv", header=T)
+sampling <- dplyr::select(sampling, lineage, AHE, gene, uce, total_loci, Targets, Source)
+sampling <- dplyr::arrange(sampling, lineage)
+kable(sampling, caption = "Table of molecular samples. Fields indicate the number of loci recovered per sample, as well as the project under which the data were generated.", format="latex", longtable=T) %>%
+  kable_styling(font_size = 6, latex_options = c("HOLD_position","repeat_header","striped"))
+```
+
+```{r LocusSamp, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF00)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_LocusSampling.pdf")
+```
+
+(ref:SF00) \small Locus type and number summarized by sample for newly sequenced samples. Dotted line indicates 50% of targeted sequences recovered. Samples in grey text at left were not included in final analyses.
+
+### Phylogenetic Analyses
+
+We estimated individual genealogies for our sequence-capture data (n=5441) under maximum-likelihood in IQ-TREE2 (Minh et al. 2020) allowing the program to assign the best fitting substitution model using ModelFinder (Kalyaanamoorthy et al. 2017), then perform 1,000 ultrafast bootstraps (Minh et al. 2013). We then estimated the species tree using the coalescent-consistent methods wASTRAL-hybrid and ASTRAL-IV (Zhang & Mirarab 2022), using IQ-TREE2 gene trees as input. We used two ASTRAL methods to take advantage of the way wASTRAL-hybrid weights branch lengths and support values in estimating the species tree, and how ASTRAL-IV allows multiple individuals per species and estimates both internal and terminal branch lengths in substitutions-per-site (as opposed to coalescent units for internal branch lengths and static terminal branch lengths in wASTRAL). To quantify topological signal from individual gene trees we calculated gene concordance factors using IQ-TREE2 and focused on intergeneric relationships using a single representative for each genus.
+
+To incorporate our dated pygopodid tree into the squamate framework of Title et al. (2024) we started by selecting their best chosen fully sampled tree ([`best_ultrametric_fulltree_ddBD_revision.tre`](https://github.com/macroevolution/squamata/tree/main)). We dropped all pygopodid tips, bar one, then grafted our tree onto that tip at the height of the estimated pygopodid crown using `phytools`. This tree is included as [Supplement/Trees/Title_Tree.tre](https://github.com/IanGBrennan/Pygopodidae/blob/main/Trees/Title_Tree.tre).
+
+```{r ASTRAL4, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF1)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_AllLoci_Clean_ASTRAL4.pdf")
+```
+
+(ref:SF1) \small Fully sampled sequence capture tree, estimated by ASTRAL4 using IQTREE-2 genetree inputs. Branch support values are indicated at nodes.
+
+```{r wASTRAL, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF2)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_AllLoci_Clean_wASTRAL.pdf")
+```
+
+(ref:SF2) \small Fully sampled sequence capture tree, estimated by weighted ASTRAL hybrid using IQTREE-2 genetree inputs. Branch support values are indicated at nodes.
+
+```{r gCF, echo=FALSE, eval=T, out.width='90%', fig.align="center", fig.cap="(ref:SF3)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/gCFs.pdf")
+```
+
+(ref:SF3) \small Low gene concordance factors (gCF) among some genera indicate moderate levels of incomplete lineage sorting. gCF scores are typically higher across the AHE dataset relative to the UCE dataset.
+
+### Divergence Dating
+
+To estimate divergence times among taxa we applied a series of fossil and secondary calibrations in MCMCTree (Rannala & Yang 2007) as outlined in the Supplement and Table S2. We started by trimming our ASTRAL tree down to a single representative for each ingroup species or subspecies for input. We reduced our molecular data to exonic markers in the AHE loci, then estimated raw genetic distances from alignments to use as a proxy for evolutionary rate. We removed the fastest 5% and slowest 5% of loci to avoid issues with extreme rate heterogeneity, divided the remaining loci into four rate partitions, and then removed third codon positions from all loci using AMAS (Borowiec 2016).
+
+For each partition we ran MCMCTree with usedata = 3 to get the approximate likelihoods and branch lengths using baseml (dos Reis & Yang 2011), then concatenated the out.BV files together. We then ran four replicate MCMCTree analyses on the gradient and Hessian (in.BV file; usedata = 2), each for 20k burnin generations before collecting 20k samples at a sampling frequency of 100 generations (2,020,000 total generations). We compared mcmc files for stationarity and convergence (ESS of all parameters \> 200), combined them using logCombiner, and used this combined mcmc file to summarize divergence times on our tree (print = -1 in .ctl file). To validate our priors we ran an additional analysis (usedata = 0) to run explicitly from the prior calibrations and determine our effective priors for comparison against our posterior age estimates. We then plotted the applied priors against effective priors (priors as a result of multiple interacting priors from usedata = 0) and posterior estimates to ensure appropriate behavior of the MCMCTree analyses.
+
+#### Table S2. Fossil Calibrations
+
+\small
+
+| Cal. | Fossil Information | Calibration | Split/Position | Source |
+|------|----------------|--------------|---------------|-------------------|
+| A | Uniform—Sophineta | 'B(2.38,2.55)' | Lepidosauria (Sphenodon + Squamata) | see below |
+| B | Uniform—Secondary | 'B(0.50,0.80)' | Diplodactylidae + (Carphodactylidae + Pygopodidae) | Burbrink et al. 2020; Title et al. 2024 |
+
+\normalsize
+
+*Note*. The root divergence between lepidosaurs (*Sphenodon* + squamates) is based on the fossil taxa *Sophineta cracoviensis* (Evans & Bialynicka, 2009), *Megachirella wachtleri* (Renesto & Posenato, 2003), and the Vellberg Jaw (Jones et al., 2013). These taxa represent stem squamates and rhynchocephalians, and so provide a soft lower bound on the crown divergence of Lepidosauria, with a soft upper bound provided by *Protosaurus speneri* (von Meyer, 1832).
+
+```{r MCMCTREE, echo=FALSE, eval=T, out.height='90%', fig.align="center", fig.cap="(ref:SF4)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Pygopodidae_MCMCTree_ALL.pdf")
+```
+
+(ref:SF4) \small Fully sampled time-tree estimated using MCMCTree. Divergence estimates are indicated at each node and accompanied by colored bars to show 95% confidence intervals. Red node bars and grey arrows highlight calibrated nodes outlined in Table S2.
+
+\newpage
+
+## Morphological Sampling
+
+### Database Assembly
+We collected two morphological traits traditionally measured in squamate research, Snout-Vent Length (SVL) and Tail Length (TL). When combined, these traits are referred to as Total Length (Total). SVL is measured from the tip of the snout to the cloaca. In small species this is typically done by straightening the body and using a pair of calipers. In larger species and in snakes, where measuring via calipers is not possible, a non-elastic and dampened piece of string is typically used to capture the length of the specimen and then it is compared against a measuring tape, ruler, or yardstick. TL is measured from the cloaca to the tip of the tail. Because many species of lizards have the ability to autotomize, or drop their tails, only original (non-regenerated) tails are measured. The process of measuring is typically the same as for SVL: by calipers in species with short tails and longer tails are measured by string. The morphological database of these traits is available in `Data/Head_Body_Tail.csv`. To understand the co-evolution of these two traits, we generated a composite measure, the ratio of tail-to-body length (TL/SVL).
+
+Raw morphological measurements were collected from museum specimens by all three authors as part of the Australian Amphibian and Reptile Genomics initiative and an Australian Research Council grant to JSK (DP210100820), provided as unpublished data, and collated from published sources. Information about the data collector (where known) and data source are provided in the data file. A significant number of records come from published datasets, including: Anelli et al. 2024 (1,420 records), Bergmann & Morinaga 2019 (231), Brandley et al. 2008 (242), Brennan et al. 2026 (460), Grundler & Rabosky 2014 (300), Jennings 2002 (747 for pygopods), Norris et al. 2021 (1,189), Meiri 2024 (1,045), Sheehy III et al. 2014 (225), Wang et al. 2026 (322). Additionally, a large number represent previously unpublished efforts first presented here: AusARG/ARC DP Keogh et al. (1,178), Chapple Group (4,207). In combining datasets all records were cleaned manually by a series of filtering steps. These included (1) flagging and inspecting records of snakes with tail lengths that exceeded 75% of their snout-vent length, (2) visualizing trends in TL/SVL-to-Total length at a family level to identify outliers (Fig.S6), and (3) flagging and inspecting any records that fell outside two standard deviations of the mean of the family they belong to for TL/SVL. Flagged records that could not be independently verified were removed from the database. 
+
+To investigate trends in tail evolution across major squamate groups and families we fit linear models to each group/family with >3 species represented in the dataset (`Scripts/04_LinearModels.R`). Visualizations are presented in Figure S6, and details are in Table S3 and S4 below. Note, linear models are likely an inappropriate fit to some groups with highly varied ecologies (e.g. Lacertoidea, which contains long-tailed lacertids and short tailed amphisbaenians).
+
+```{r, echo=F, eval=T}
+library(magrittr); library(kableExtra)
+load("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Data/LM_TLSVL_byGroup.RData")
+kable(lm.group, caption = "Fit of linear model to each squamate group. Ordered by ascending slope.", row.names = FALSE) %>%
+  kable_styling(font_size = 9, latex_options = "HOLD_position")
+kable(lm.family, caption = "Fit of linear model to each squamate family. Ordered by ascending slope.", row.names = FALSE) %>%
+  kable_styling(font_size = 9, latex_options = "HOLD_position")
+```
+
+
+### Investigating the 'Elongation Index'
+Other studies have used different composite measures to accomplish the same task, notably the `elongation index` (EI) used by Title et al. (2024). In simplest terms, the elongation index is the body length divided by the body width. More specifically, this trait was calculated by imagining the animal as an idealized cylinder where length is SVL and volume is the mass, as these were traits readily available from SquamBase (Meiri 202X). 
+
+$$\text{Assuming} \quad mass=\pi r^2 SVL \quad \text{then} \quad EI=\frac{SVL}{2(\frac{mass}{\pi SVL})}$$
+
+$$\text{Given that} \quad BodyWidth=2(\frac{mass}{\pi SVL}) \quad \text{then} \quad EI=\frac{SVL}{BodyWidth}$$. 
+
+
+**Unfortunately**, this approach was inappropriate for two reasons. 
+
+1. Length and mass data derived from SquamBase are typically maximum *recorded* values, and do not necessarily correspond to the same individual. This strongly biases the resulting elongation index values. 
+    * e.g. the highest-value EI species in Title et al. are *Hydrodynastes gigas*, *Pituophis melanoleucus*, and *Farancia abacura* (all EI scores >2700), species that are long, but not *notably* elongate for a snake.
+    * expected high EI scoring species should be long and thin species such as typhlopid (e.g. *Ramphotyphlops longissimus*) and some arboreal colubrid (*Ahaetulla prasina*) snakes. 
+2. While the majority of snake mass is concentrated in the body, lizards apportion significant mass in limbs and tails. Across lizards, tails act as the primary axis of elongation, and in some species more than half the animal mass may be contained in the tail.  
+    * This systematically biases the elongation index towards higher values in snakes and lower values in lizards.
+    * The *elongation index* of Title et al. is more an index of body elongation not absolute elongation.
+
+
+```{r TLSVL, echo=FALSE, eval=T, out.width='90%', fig.align="center", fig.cap="(ref:SF5)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Supplement/Squamata_TLSVL_Total2.png")
+```
+
+(ref:SF5) \small Trends in tail length to snout-vent length as a function of total length across squamate families. Where sample sizes permit, we fit linear models to family trends.
+
+```{r, echo=F, eval=F}
+library(magrittr); library(kableExtra)
+mtraits <- read.csv("Data/Head_Body_Tail_TreeNames.csv")
+kable(mtraits[1:10,c(1,2,3,4,5,6,7,9,11,12,13,15)], caption = "Morphological database of squamate SVL and Tail Length.") %>%
+  kable_styling(font_size = 9, latex_options = "HOLD_position")
+```
+
+### Modelling Tail-to-Body Evolution
+To better understand the tempo and mode of elongation through tail evolution we undertook a trait modelling exercise. We started by grafting our dated pygopod tree onto the squamate topology of Title et al. (2024) and we retained squamate taxa that were available in both the tree and morphological dataset (TL/SVL). Using these data we fit a series of models ranging from an unbiased random walk to rate-variable and trended. The most basic model—Brownian Motion—allows phenotypes to evolve through incremental random change, but at deep timescales and when traits may show evolutionary rate heterogeneity this model is expected to perform poorly. The most complex—BayesTraits V4’s fabric model (Pagel et al. 2022)—also follows a process of gradual change, but allows rates to shift at discrete points (changes in evolvability, *v*) on the tree and allows traits to change rapidly along individual branches through directed evolution (trends, $\beta$). We fit these models and others (Early Burst, single-peak Ornstein-Uhlenbeck) in BayesTraits V4 and estimated marginal likelihoods using a stepping-stone sampler to compare model fit.
+
+We started by generating a BayesTraits input file for the size-corrected tail length (TL/SVL) `Data/BayesTraits/Traits/...`.  We used custom functions in the `Scripts/VarRates_Functions.R` script to generate control files which include priors on evolutionary rate and ancestral trait based on the fit of a Brownian Motion model in `phytools`. See `Data/BayesTraits/Control_Files`. We also used generated a shell script to fit the models in parallel, see `Data/BayesTraits/Shells/SHELL_ALL.sh`. We fit two independent runs of each model to the data and summarized the model fits using `Scripts/01_BayesTraits_ModelComparison.R`. After identifying that the *fabric* model is the best fit to the data, we inspected the log files for stationarity (ESS > 200) and processed the *fabric* outputs to extract ancestral state values using the script `Scripts/02_Process_BayesTraits_Output_SingleChain.R`. These data were stored in `Data/Ancestral_Trait_Estimates.RData`.
+
+```{r, echo=F, eval=T}
+library(magrittr); library(kableExtra)
+bt <- read.csv("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Data/BayesTraits/Results/BayesTraits_MarginalLikelihoods_RESULTS.csv", header=T)
+kable(bt, caption = "Table of comparative model fitting results. The fabric model (bold) is favored over competing models.", format="latex", longtable=T) %>%
+  kable_styling(font_size = 12, latex_options = c("HOLD_position","repeat_header","striped")) %>%
+  row_spec(c(5,6), bold = TRUE)
+```
+
+To visualize changes in evolutionary rate and directed morphological changes as inferred under the *fabric* model, we used `Scripts/03_BayesTraits_Results.R`. This leans heavily on custom functions contained in `Scripts/fabric_Functions.R` to plot *fabric* outputs. 
+
+
+```{r fabric, echo=FALSE, eval=T, out.width='90%', fig.align="center", fig.cap="(ref:SF6)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Figures/BayesTraits/fabric_b_v_upright.pdf")
+```
+
+(ref:SF6) \small Visualization of BayesTraits fabric model fit result. Branches are colored according to evolvability scalar $v$, with warmer colors indicating faster evolutionary rates, and cooler colors indicating slower rates. Branch lengths have been scaled to reflect the phenotypic directional trend scalars $\beta$, with shortened branches indicating shifts towards shorter tail-to-body ratios, and extended branches indicating longer tail-to-body ratios. To better identify the placement of these $\beta$ shifts, we have plotted colored circles along the shifted edges, with blue circles indicating decreases and red circles indicating increases in tail-to-body ratios. 
+
+\newpage  
+
+## Dietary Sampling
+
+### Database Assembly
+To investigate patterns of diet breadth evolution across squamates we built on existing datasets (Title et al. 2024; Cavalcanti et al. 2025) by collecting data from the literature. Our dataset includes diet records for more than 90,000 individuals across 1,738 species and 63 squamate families. This new dataset significantly expands on efforts elsewhere by incorporating nearly 200 additional species, primarily lizards, including many limb-reduced species (e.g. *Dibamus*) and those with dietary items not previously captured (e.g. seaweed eating *Amblyrhynchus cristatus*, and frugivorous lizards like *Conolophus pallidus* and *Varanus mabitang*).
+
+The dietary dataset of Title et al. (2024) (TEA24) is the largest current squamate database (>74k individuals), and while it covers all squamates, it primarily focuses on snakes. For consistency, and to harness the analytical framework presented in TEA24, we chose to add to this dataset rather than generate a new one. The second largest dataset, collated by Cavalcanti et al. (2025) (CEA25) accounts for >14k individuals and exclusively focuses on squamate lizards. To harmonize the two datasets, we recoded the dietary categories of CEA25 following those of TEA24. Those recodings are documented in *Diet/Cavalcanti_Diet_Data/Cavalcanti_ReCategorization.csv* and largely correspond to combining fine invertebrate categories into increasingly broad ones (e.g. insect_egg, insect_larvae, insect_pupae --> insect_larvae_pupae_and_eggs). We contribute an additional 63 species not covered in either TEA24 or CEA25 and provide references and DOIs for all entries (column `source_reference`). For TEA24 and CEA25 we refer readers to those publications. Unfortunately, TEA24 does not include references to primary literature for any of the 1560 species included. CEA25 includes (where available) author names, year, and journal title, and so we include this information in a separate column titled `source`. Further, dietary studies rarely provide raw data presented on a per-specimen basis. Instead, dietary information are typically presented as dietary item frequencies or proportions from a pool of individuals, and so while unsatisfying, we are unable to provide specimen-level dietary metadata.
+
+To process and analyze the data we followed the methodology of Title et al. (2024) in standardizing diet proportions to make lizards and snakes comparable. We collected this information ("full stomach equivalents"---prey proportion x number of sampled individuals) into a table (`Diet/Squamata_Diets_Families.csv`). We then followed the analytical framework of Grundler & Rabosky (2021). Briefly, this framework calculates a phylogenetically informed estimate of dietary niche for each species, accounting for sample size variation. It accomplishes this by discretizing the multivariate diet space (32 dimensions) into K niche states (we used K = 20, 50, 100, 1000), then uses an MCMC sampler to generate posterior distributions of dietary preference across those diet variables for each taxon. Specifications for the MCMC sampler are provided in `Diet/01_mcmc-diet.R`. The result is four mcmc chains (`mcmc-...out`), one for each value of K. Results were averaged across all four chains and summarised to generate phylogenetically-smoothed dietary proportions (`Diet/diet-proportions-phylo.csv`) using the `Diet/02_make-diet-proportions.R` script.
+
+### Dietary Breadth Comparisons
+Further dietary data exploration and analysis is documented in `Diet/Plotting_Diet_PCA2.R`. We started exploring the data by estimating dietary breadth for each species using the Inverse Simpson Index in `vegan`. We split species into one of four morphological categories (limbed lizard, limbless lizard, snake, pygopod) and plotted the distribution of dietary breadth across each group, including the group mean. For the sake of visualizing this diet space (32 dimensions) we used principle components analysis for dimensionality reduction (`prcomp`). 
+
+To compare dietary disparity among squamate families we calculated the mean pairwise distance in euclidean space among all species in each family using `dispRity` (Table S6). We then plotted mean pairwise distance against mean dietary breadth on a per-family basis to identify groups that show unique combinations broad/narrow diets and high/low dietary overlap among species within those families. This highlighted some families with remarkably conserved diets (Uropeltidae), others with diverse diets that are shared across species (Diploglossidae), and some with narrow diets that are varied among species (Colubridae, Pygopodidae, Varanidae). To quantify differences in the magnitude of dietary breadth among families, we undertook a permutation exercise comparing families in a pairwise fashion (`Scripts/05_DietaryComparison.R`). We started by translating our species-level dietary data into a distance matrix using *vegdist* in the package `vegan`, applying the Bray-Curtis method because our dietary data are proportions. We compared all combinations of families with $\ge$ 5 species (n = 31 families), shuffling species between families in 999 permutations. We assessed significance through a two-sided test after correcting the p-values for multiple comparisons using the Benjamin & Hochberg (BH) method. To visualize the resulting 31^2^ comparisons we plotted results as a heatmap (Fig.S8).
+
+```{r DietHeat, echo=FALSE, eval=T, out.height='60%', fig.align="center", fig.cap="(ref:SFZZ)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Figures/Diet/DietaryBreadth_Heatmap.pdf")
+```
+
+(ref:SFZZ) \small Heatmap depicting pairwise comparisons of dietary breadth between squamate families. We tested for differences in dietary breadth (as mean pairwise distance) between all pairs of families with $\ge$ 5 species in our database. Non-significant results (no difference in dietary breadth) are noted by blank squares, colored squares indicate significant differences in breadth. Colors indicate the direction of difference: red indicates situations where breadth is greater in Family 1 (listed on left side of heatmap) and blue indicates situations where breadth is greater in Family 2 (listed at the top of heatmap). For example, in the comparison of Gekkonidae and Pygopodidae, the result is significant (colored) and the difference is such that Pygopodidae show a greater breadth. Worth highlighting are the trends in a small number of families: pygopod geckos, varanid lizards, and colubrid snakes show higher dietary breadths than most other squamate families. Iguanid lizards (largely herbivorous), uropeltid snakes (worm eaters), and typhlopid snakes (ants, termites, and their larvae) show much narrower dietary breadths than most other squamate families. Tree at left illustrations the phylogenetic relationships among squamate families included.
+
+\newpage
+
+### Dietary Breadth Simulations
+To determine where these patterns in dietary breadth and variety may differ from null evolutionary expectations we estimated evolutionary rates for each dietary class across the squamate tree. To do this we fit separate Bounded Brownian Motion models in `phytools`, to each dietary category and extracted evolutionary rates (sigma) and ancestral values (theta). Using the empirically estimated values, we simulated 500 datasets with traits bounded between 0 and 1, normalized each species’ dietary proportions to sum to 1, and calculated mean pairwise distance again to determine a null distribution. We then plotted each family's empirically estimated pairwise distance against the null distribution for that family to identify those that deviate from expectations (blue greater than, red less than).
+
+```{r, echo=F, eval=T}
+library(magrittr); library(kableExtra)
+load("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Data/PairwiseDistance_Table.RData")
+fd.fams <- dplyr::select(fd.fam, family, pd, pd.variance, no.species)
+fd.fams <- fd.fams[order(fd.fams$pd,decreasing=T),]
+kable(fd.fams, caption = "Mean pairwise distance (pd) in dietary space within each squamate family represented by >= 3 species (no.species).", row.names = FALSE) %>%
+  kable_styling(font_size = 9, latex_options = "HOLD_position")
+```
+
+```{r DietSig, echo=FALSE, eval=T, out.height='80%', fig.align="center", fig.cap="(ref:SF7)"}
+knitr::include_graphics("/Users/ianbrennan/Documents/GitHub/Pygopodidae/Figures/Diet/PairwiseDistance.pdf")
+```
+
+(ref:SF7) \small Comparison of observed dietary pairwise disparity against a null phylogenetic diet evolutionary model indicates squamate families that adhere (grey) to dietary expectations and those that deviate from expectations (greater---blue---show greater pairwise disparity; lower---red---show less pairwise disparity than expected). Families are ordered alphabetically, and number in parentheses indicates the number of sampled species.
+
+
+
+# Supplementary References
+
+<!-- ::: {#refs} -->
+
+Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: a flexible trimmer for Illumina sequence data. Bioinformatics, 30(15), 2114-2120.  
+
+\  
+
+Borowiec, M. L. (2016). AMAS: a fast tool for alignment manipulation and computing of summary statistics. PeerJ, 4, e1660.
+
+\  
+
+dos Reis, M. and Yang, Z. (2011). Approximate likelihood calculation for Bayesian estimation of divergence times. Molecular Biology and Evolution, 28:2161-2172.
+
+\  
+
+Handika, H., & Esselstyn, J. A. (2024). SEGUL: Ultrafast, memory‐efficient and mobile‐friendly software for manipulating and summarizing phylogenomic datasets. Molecular Ecology Resources, 24(7), e13964.
+
+\  
+
+Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K., Von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: fast model selection for accurate phylogenetic estimates. Nature methods, 14(6), 587-589.
+
+\  
+
+Katoh, K., & Standley, D. M. (2013). MAFFT multiple sequence alignment software version 7: improvements in performance and usability. Molecular Biology and Evolution, 30(4), 772-780.  
+
+\  
+
+Kent, W. J. (2002). BLAT—the BLAST-like alignment tool. Genome Research, 12(4), 656-664.  
+
+\  
+
+Minh, B. Q., Nguyen, M. A. T., & von Haeseler, A. (2013). Ultrafast approximation for phylogenetic bootstrap. Molecular Biology and Evolution, 30(5), 1188-1195.
+
+\  
+
+Prjibelski, A., Antipov, D., Meleshko, D., Lapidus, A., & Korobeynikov, A. (2020). Using SPAdes de novo assembler. Current protocols in bioinformatics, 70(1), e102.  
+
+\  
+
+Talavera, G., & Castresana, J. (2007). Improvement of phylogenies after removing divergent and ambiguously aligned blocks from protein sequence alignments. Systematic biology, 56(4), 564-577.  
+
+\  
+
+Wagner, P., Stanley, E. L., Daza, J. D., & Bauer, A. M. (2021). A new agamid lizard in mid-Cretaceous amber from northern Myanmar. Cretaceous Research, 124, 104813.
+
+\  
+
+Zhang, J., Kobert, K., Flouri, T., & Stamatakis, A. (2014). PEAR: a fast and accurate Illumina Paired-End reAd mergeR. Bioinformatics, 30(5), 614-620.
+

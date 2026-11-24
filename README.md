@@ -1,6 +1,6 @@
 # Pygopodidae
 
-This repository contains all data and scripts to reproduce the work presented in our study of Pygopodidae geckos [see BioRxiv](https://www.biorxiv.org/content/10.64898/2026.06.22.733657v1). It also includes figures, presentations, and past versions of the manuscript for completeness.
+This repository contains all data and scripts to reproduce the work presented in our study of Pygopodidae geckos [see BioRxiv](https://www.biorxiv.org/content/10.64898/2026.06.22.733657v2). It also includes figures, presentations, and past versions of the manuscript for completeness. Supplementary information (materials/methods, figures, tables) can be found in the most recent document in the [`Supplement/`](https://github.com/IanGBrennan/Pygopodidae/tree/main/Supplement) directory.
 
 <img src="Figures/Illustrations/Pygopodidae_Aprasia_smithi.png" width=50% height=50%> 
 
