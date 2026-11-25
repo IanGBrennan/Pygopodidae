@@ -401,6 +401,7 @@ fabricPlotVB <- function(process.obj, phy, trait.name, font.size=0.5, line.width
       # Anchor: log(1) = 0 maps to 50
       # Scale symmetrically around that anchor using whichever extreme is larger
       half_range <- max(abs(log(ndel$rate)))  # the "furthest" value from 1, in log space
+      log_vals <- log(ndel$rate) # I made this up because I can't remember where 'log_vals' came from!
       scaled <- 50 + (log_vals / half_range) * 50
       ndel$rate.round <- round(scaled)
       
@@ -410,9 +411,9 @@ fabricPlotVB <- function(process.obj, phy, trait.name, font.size=0.5, line.width
       #new.cols <- c(col.ramp.blu(99), "lightGrey", col.ramp.red(99))
       col.ramp.red <- colorRampPalette(c("grey", "#FAD4AC", "#F0A881", "#E57A61", "#C75255", "#A72547", "#751133"))
       col.ramp.blu <- colorRampPalette(c("grey", "#BEE2CF", "#8AC1C4", "#559FB9", "#397BA8", "#1B5897", "#213970"))
-      new.cols <- c(rev(col.ramp.blu(99)), "lightGrey", col.ramp.red(99))
+      new.cols <- c(rev(col.ramp.blu(50)), "lightGrey", col.ramp.red(49))
       #scales::show_col(new.cols)
-      ndel$edge.color <- new.cols[ndel$rate.round]
+      ndel$edge.color <- new.cols[ndel$rate.round+1]
   }
 
   # plot the tree

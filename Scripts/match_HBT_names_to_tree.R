@@ -3,12 +3,14 @@
 # If the exact species name exists in the tree, copy it to name_in_tree.
 # If not, attempt a synonym lookup and then a fuzzy spelling search.
 
+setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae")
+
 library(ape)
 
-csv_file <- "Data/Head_Body_Tail_June2026.csv"
+csv_file <- "Data/Head_Body_Tail_Nov2026.csv"
 tree_file <- "Diet/best_ultrametric_fulltree_ddBD_revision.tre"
 syn_file <- "Diet/dietname-to-treename.csv"
-out_file <- "Data/Head_Body_Tail_June2026_with_tree_names.csv"
+out_file <- "Data/Head_Body_Tail_Nov2026_with_tree_names.csv"
 
 message("Reading CSV: ", csv_file)
 df <- read.csv(csv_file, stringsAsFactors = FALSE, check.names = FALSE)

@@ -100,6 +100,14 @@ final.overlaps <- intersect(ydata$name_in_tree, stree$tip.label); length(final.o
 final.tree <- drop.tip(stree, setdiff(stree$tip.label,final.overlaps)); Ntip(final.tree)
 final.data <- dplyr::filter(ydata, name_in_tree %in% final.overlaps); nrow(final.data)
 
+bt.data <- final.data
+bt.tree <- final.tree
+# Name the nodes
+bt.tree$node.label <- paste("n", (Ntip(bt.tree)+1):(Ntip(bt.tree) + Nnode(bt.tree)), sep="")
+
+# save these as a file we can later load
+save(bt.data, bt.tree, file = "Data/BayesTraits/Pygopodidae_BT_Input.RData")
+
 ################################################################################
 
 # GENERATE BAYESTRAITS INPUTS
@@ -212,6 +220,36 @@ BT.shell.numbers(in.files = trait.files,
 # make sure to adjust the path to the control file to match each trait
 # the shell script can be run in parallel if you've got GNU parallel
 # $ parallel -j 8 --bar :::: <path_to>/BTShell.sh
+
+############################################################################
+
+source("Scripts/Analysis_Helper_Scripts/fabric_Functions.R")
+
+############################################################################
+
+load("Data/Amphibolurinae_Data.RData")
+# if you're here just for plotting, load here:
+# load("Data/Amphibolurinae_fabric_AllChainsSummary.RData")
+
+############################################################################
+
+# generate an md5sum key to match against nodes
+# any single POST-PROCESSED (FPP) fabric file (using the same tree) will 
+# be appropriate and will provide corresponding md5 and taxa lists
+nodekey <- fabricMD5("/Applications/BayesTraitsV4.1.2/Amphibolurinae_Fabric_Traits/fabric_Runs_NoPriors/Run01/UpperLeg_Run01_TRAIT.txt.VarRates.txt.csv", agam.tree)
+
+############################################################################
+
+# process a single trait and plot the fabric results
+ul.res <- fabricProcess(fpp.path = "/Applications/BayesTraitsV4.1.2/Amphibolurinae_Fabric_Traits/Run01/UpperLeg_Run01_TRAIT.txt.VarRates.txt.csv",
+                                                phy = agam.tree, trait.name = "Upper Leg")
+fabricPlot(process.obj = ul.res, phy = agam.tree, trait.name = "Upper Leg", plot.type="phylogram")
+# circles denote shifts in the evolvability (v), red increases, blue decreases
+# colored branches denote directional trends (b) in traits, red increases, blue decreases
+
+# or plot it differently:
+ul.fab <- fabricPlotVB(process.obj = ul.res, phy = agam.tree, plot.type = "phylogram", 
+             line.width = 1, font.size = 0.3, trait = "Upper Leg")
 
 ############################################################################
 

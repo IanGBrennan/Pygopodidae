@@ -4,29 +4,30 @@ setwd("/Users/ianbrennan/Documents/GitHub/Pygopodidae")
 
 ################################################################################
 
-all <- read.tree("Trees/Pygopodidae_MCMCTree_RegNo.tre")
-all$edge.length <- all$edge.length*100
-all$tip.label <- sapply(all$tip.label, function(x) strex::str_after_first(x,"_"))
-all <- drop.tip(all, c("Sphenodon_punctatus_SAMN08038466",
-                       "Oedura_luritja_CCM5974",
-                       "Saltuarius_cornutus_A002601",
-                       "Lialis_burtonis_ABTC30417",
+all <- read.tree("Trees/Pygopodidae_MCMCTree_Spp.tre")
+#all$edge.length <- all$edge.length*100
+#all$tip.label <- sapply(all$tip.label, function(x) strex::str_after_first(x,"_"))
+all <- drop.tip(all, c(#"Sphenodon_punctatus_SAMN08038466",
+                       #"Oedura_luritja_CCM5974",
+                       #"Saltuarius_cornutus_A002601",
+                       "Lialis_burtonis_RJE110407",
+                       "Lialis_burtonis_ABTC3721",
+                       "Lialis_burtonis_ABTC52145",
                        "Aprasia_repens_WAMR168645",
-                       "Delma_tincta_WAMR114391",
                        "Delma_haroldi_WAMR154780")) 
 all$tip.label <- strex::str_before_last(all$tip.label, "_")
-all$tip.label[46:48] <- c("Delma_reticulata","Delma_hades","Delma_branchia")
+#all$tip.label[46:48] <- c("Delma_reticulata","Delma_hades","Delma_branchia")
 
 write.tree(all, file="Trees/Pygopodidae_MCMCTree.tre")
 plot(all); axisPhylo()
 
 ################################################################################
 
-agam.tree2 <- ladderize(all)
+ptree <- ladderize(all)
 
 arc_height<-0.4
-h<-max(nodeHeights(all))
-plotTree2(all,type="arc",lwd=1,fsize=0.45,ftype="i",
+h<-max(nodeHeights(ptree))
+plotTree(ptree,type="arc",lwd=1,fsize=0.45,ftype="i",
          arc_height=arc_height,ylim=c(-0.1*h,1.1*(1+arc_height)*h))
 labs<-seq(0,h,by=5)
 a1<-axis(1,pos=-0.02*h,at=h-labs+arc_height*h,
@@ -35,7 +36,7 @@ text(mean(a1),-0.23*h,"million years bp",font=3)
 a2<-axis(1,pos=-0.02*h,at=-h+labs-arc_height*h,
          labels=labs,cex.axis=0.8,lwd=2,lend=2)
 text(mean(a2),-0.23*h,"million years bp",font=3)
-draw.arc(0,0,radius=h-labs[2:length(labs)]+arc_height*h,
+plotrix::draw.arc(0,0,radius=h-labs[2:length(labs)]+arc_height*h,
          angle1=,angle2=pi,col=make.transparent("blue",0.4),
          lty="dotted")
 
@@ -365,6 +366,6 @@ arcPhylogram<-function(tree,colors,fsize,ftype,lwd,mar,add,part,setEnv,
 
 
 
-plotTree2(agam.tree2,type="arc",lwd=1,fsize=0.45,ftype="i",
+plotTree2(ptree,type="arc",lwd=1,fsize=0.45,ftype="i",
           arc_height=arc_height,ylim=c(-0.1*h,1.1*(1+arc_height)*h))
 
