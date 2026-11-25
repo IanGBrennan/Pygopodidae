@@ -10,7 +10,7 @@ This repository contains all data and scripts to reproduce the work presented in
 ### [`Alignments/`](https://github.com/IanGBrennan/Pygopodidae/tree/main/Alignments) 
 - Sequence alignments and alignment summaries.
 
-### [`Data/`](https://github.com/IanGBrennan/Pygopodidae/tree/main/data) 
+### [`Data/`](https://github.com/IanGBrennan/Pygopodidae/tree/main/Data) 
 - Morphological, sampling, trait, and comparative-analysis data.
 
 ### [`Diet/`](https://github.com/IanGBrennan/Pygopodidae/tree/main/Diet) 
