@@ -6,7 +6,7 @@ gs4_deauth()
 #mdata <- read_sheet("https://docs.google.com/spreadsheets/d/1spQTYO9bKFsNZ2rfoNRCdyKFWCamxMxOaAHOCxR1G_I/edit?usp=sharing")
 #mdata$genus_species <- paste(mdata$genus,"_",mdata$species,sep="")
 
-mdata <- read.csv("Data/Head_Body_Tail_TreeNames.csv")
+mdata <- read.csv("Data/Head_Body_Tail_Nov2026_TreeNames.csv")
 
 ################################################################################
 
@@ -106,7 +106,7 @@ bt.tree <- final.tree
 bt.tree$node.label <- paste("n", (Ntip(bt.tree)+1):(Ntip(bt.tree) + Nnode(bt.tree)), sep="")
 
 # save these as a file we can later load
-save(bt.data, bt.tree, file = "Data/BayesTraits/Pygopodidae_BT_Input.RData")
+save(bt.data, bt.tree, file = "Data/BayesTraits/Pygopodidae_BT_Input_Nov2026.RData")
 
 ################################################################################
 
